@@ -1,0 +1,120 @@
+---
+title: "Roldelaeducacionenladesigualdadsalarial"
+author: "Diego Meza Avila"
+format: html
+editor: visual
+bibliography: references.bib
+link-citations: True
+---
+
+## Rol de la educacion en desigualdad salarial
+
+La desigualdad es un fenómeno multidimensional que afecta diversos aspectos de la sociedad y compromete significativamente la calidad de vida. En Chile, este problema persiste pese a los esfuerzos por mitigarlo, afectando profundamente tanto a la población como a sus instituciones. Uno de los ámbitos donde la desigualdad se manifiesta con claridad es en el sector educativo, particularmente en la disparidad de oportunidades y resultados entre los distintos tipos de educación superior. 
+
+Este trabajo analiza cómo estas diferencias educativas influyen en la satisfacción salarial de los egresados, explorando específicamente si el tipo de educación superior recibida determinan la percepción de equidad y satisfacción con los ingresos obtenidos de sus empleos, sin considerar ganancias adicionales. Así, se plantea la siguiente pregunta de investigación: ¿Cómo afecta el tipo de la educación superior en Chile al nivel de satisfacción salarial y a la percepción de desigualdad entre los egresados? Para poder entender mejor esta desigualdad mencionada, es importante recordad como la desigualdad afecta al sistema educativo, ya que, para este análisis se considerará como la desproporcionada atención y remuneración, dada a líneas de trabajo o especializaciones que estén alineadas con el interés político- económico del país "debían generar la oferta académica en concordancia con las necesidades humano-técnicas que requerían los proyectos estratégicos puestos en marcha por la Senplades." ([@auquicalle2023]); esto se podría considerar tanto causa como consecuencia de la condición que aplica esto, a la educación del país. Siendo un sistema educativo que, pese a que existan y se ofrezcan diferentes tipos de educación superior, se le asocia la idea de que hay algunos dentro de este grupo que tienen más beneficios económicos que otros, aumentando así la tendencia en que las personas ingresas a estos tipos de educación superior, "América Latina presenta indicadores que hacen de su sistema superior un sistema de acceso de masas. La tabla 2 refleja el incremento en el tiempo y muestra el aumento sostenido de la tasa bruta de matriculación" ([@lacontr2023]). 
+
+El otro aspecto de la desigualdad que afecta a chile y su población es la salarial, aun que al igual que la desigualdad educacional, es una desigualdad que puede considerarse y estudiarse desde diferentes perspectivas, en este trabajo se entenderá la desigualdad salarial como a la situación en la que dos personas pueden trabajar lo mismo, sin embargo, una recibirá más ingresos que la otra, dependiendo del título que lleve cada una, y no por su actividad siendo tal, que en situaciones personas pueden trabajar más que otras, y no llegar a fin de mes para pagar las cuentas "existe discriminación en el mercado de trabajo cuando un grupo de individuos recibe injustificadamente y de manera independiente a sus habilidades, un trato desfavorable que afecta su participación y desarrollo dentro de este mercado." ([@delaluztovar2023]). Si bien pueden ser diferentes las situaciones de cada persona, así como los factores que le afectan (diferentes gastos), en este análisis centraremos la atención en cómo, aunque personas si dediquen tiempo a especializarse en sus estudios, va a depender de tipo de educación superior que reciban los ingresos que reciban "No obstante, otra característica ha sido la persistente desigualdad en la distribución de ingresos" ([@iturra2023]). Para poder entender la relación que hay entre las personas y su satisfacción por los ingresos actuales remunerados, se entenderá el tomar horas extras en el trabajo como la necesidad de generar más ingresos para poder cubrir sus gastos, siendo actuales o futuros. 
+
+```{r}
+install.packages("pacman") 
+
+pacman::p_load(dplyr, sjmisc, car, sjlabelled, stargazer, haven, summarytools,kableExtra,sjPlot,corrplot,sessioninfo,ggplot2) 
+
+options(scipen=999) 
+
+load(url("https://github.com/justicia-distributiva/merit-edjust/raw/main/input/data-original/casen2022.RData")) 
+
+dim(casen22) 
+
+View(casen22) 
+
+proc_data <- casen22 %>% select(y3ap,e8) 
+
+sjlabelled::get_label(proc_data) 
+```
+
+Para realizar nuestro análisis sobre cómo el tipo de educación superior influye en la satisfacción con el salario recibido, utilizaremos la base de datos de la Encuesta CASEN 2022. Seleccionaremos como indicadores las preguntas: ¿Con qué frecuencia recibe ingresos por horas extras? y ¿En qué tipo de institución realizó su educación superior?. Interpretaremos la primera pregunta como un indicativo de la necesidad o elección de generar ingresos adicionales, debido a que el salario base no es suficiente para cubrir la calidad de vida deseada por la persona. La segunda pregunta nos permitirá explorar los distintos tipos de educación superior presentes en Chile y su relación con la satisfacción salarial. 
+
+```{r}
+proc_data <- proc_data %>% set_na(., na = c(-88, -99)) 
+
+proc_data <- proc_data %>% rename( satisfacciont=y3ap, Tipo= e8) 
+
+proc_data$satisfacciont <- set_label(x = proc_data$satisfacciont,label =  
+"Insatisfaccion con sueldos") 
+
+get_label(proc_data$satisfacciont) 
+
+proc_data$Tipo <- set_label(x = proc_data$Tipo,label = "Tipo de educacion superior") 
+get_label(proc_data$Tipo) 
+
+proc_data$Des_salarial <- (proc_data$satisfacciont+proc_data$Tipo) 
+
+summary(proc_data$Des_salarial) 
+
+get_label(proc_data$Des_salarial) 
+
+proc_data$Des_salarial <- set_label(x = proc_data$Des_salarial, label =  
+"Desigualdad Salarial") 
+
+frq(proc_data$satisfacciont) 
+
+frq(proc_data$Tipo) 
+
+frq(proc_data$Des_salarial) 
+
+proc_data <-as.data.frame(proc_data) 
+
+stargazer(proc_data, type="text") 
+
+summarytools::dfSummary(proc_data, plain.ascii = FALSE) 
+
+frq(proc_data$Tipo) 
+
+sum(is.na(proc_data)) 
+
+proc_data <-na.omit(proc_data) 
+
+summarytools::dfSummary(proc_data, plain.ascii = FALSE) 
+
+dim(proc_data) 
+
+ggplot() 
+
+ggplot(proc_data, aes(x = satisfacciont)) 
+
+proc_data %>% ggplot(aes(x = satisfacciont)) +  geom_bar() 
+
+ggplot() 
+
+ggplot(proc_data, aes(x = Tipo)) 
+
+proc_data %>% ggplot(aes(x = Tipo)) +  geom_bar() 
+
+graph1 <- proc_data %>% ggplot(aes(x = satisfacciont)) +  geom_bar(fill = "green")+ labs(title = "Insatisfacción salarial", x = "Frecuencia de ingresos por horas extras en meses", y = "Numero de Personas") + theme_bw() 
+
+graph1 
+
+proc_data$Tipo <- factor(proc_data$Tipo, levels = c(1, 2, 3, 4, 5, 6, 7),  labels = c("CFT", "IP", "UPnR", "UpR", "UE", "EFAO", "UE")) 
+
+levels(proc_data$Tipo) 
+
+graph2 <- ggplot(proc_data, aes(x = Tipo)) + geom_bar() + labs(x = "Tipo de educación superior", y = "Número de personas") + theme_minimal() + theme(axis.text.x = element_text(angle = 45, hjust = 1))+  geom_bar(fill = "pink") 
+
+
+sjt.xtab(proc_data$satisfacciont, proc_data$Tipo, show.col.prc=TRUE, show.summary=FALSE, encoding = "UTF-8") 
+table3 <- sjt.xtab(proc_data$satisfacciont, proc_data$Tipo, show.col.prc=TRUE, show.summary=FALSE, encoding = "UTF-8") 
+
+summary(proc_data$Tipo) 
+
+summary(proc_data$satisfacciont) 
+```
+
+Tal como podemos observar en los datos generados por Rstudio, podemos ver en el grafico numero 1 como existe una concentración importante en las personas que mensualmente trabajan horas extras, lo que se podría interpretar como que la mayoría de las personas observadas en este estudio de CASEN 2022, no les es suficiente su salario actual por lo que tienen que optar por trabajar mas horas extras; esto lo entendemos debido a que la media, mediana y moda se centran en recibir horas extras cada 1 mes, o mensualmente. En cuanto al segundo gráfico podemos ver cómo solo nos entrega información de cómo se distribuyen las personas en estos tipos de educación superior, pero al no haber muchas diferencias no se puede argumentar mucho, hasta que vemos la tabla de contingencia, dada en el objeto graph3 (por temas de continuidad al hacer el código), y en esta tabla podemos ver cómo la insatisfacción por los ingresos salariales actuales afecta a todos los tipos de educación, teniendo todos los mayores ingresos mensuales; incluso comparando con el estado general de la educación no varía el hecho de que las horas extras requieren. Aun así, se podría resaltar que la cantidad de personas en Institutos profesionales y Universidades estatales es mucho mayor a los otros tipos de educación superior, por lo que su grado de incidencia en este tema se podría considerar mucho mayor.
+
+```{r}
+options(repos = c(CRAN = "C:/Users/Regalo/OneDrive/Escritorio/RoldelaEenDS/roldelaeducacionendesigualdadsalarial"))
+
+
+
+```

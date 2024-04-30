@@ -1,0 +1,22 @@
+"0","install.packages(""pacman"") 
+"
+"1","Error in "
+"1",""
+"1","install.packages"
+"1",""
+"1"," : "
+"1",""
+"1","Updating loaded packages"
+"1",""
+"1","
+"
+"0","pacman::p_load(dplyr, sjmisc, car, sjlabelled, stargazer, haven, summarytools "
+"0",",kableExtra,sjPlot,corrplot,sessioninfo,ggplot2) "
+"0",""
+"0","options(scipen=999) "
+"0",""
+"0","load(url(""https://github.com/justicia-distributiva/merit-edjust/raw/main/input/data-original/casen2022.RData"")) "
+"1","
+Restarting R session...
+
+"

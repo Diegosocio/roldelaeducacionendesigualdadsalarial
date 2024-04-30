@@ -1,0 +1,124 @@
+{
+    "sources": [
+        {
+            "DOI": "10.48102/rlee.2023.53.3.581",
+            "URL": "https://rlee.ibero.mx/index.php/rlee/article/view/581",
+            "author": [
+                {
+                    "family": "Auqui Calle",
+                    "given": "Freddy"
+                },
+                {
+                    "family": "Barreiros",
+                    "given": "Irene"
+                }
+            ],
+            "container-title": "Revista Latinoamericana de Estudios Educativos",
+            "id": "auquicalle2023",
+            "issue": "3",
+            "issued": {
+                "date-parts": [
+                    [
+                        2023,
+                        9,
+                        4
+                    ]
+                ]
+            },
+            "page": "431-460",
+            "title": "El examen ser bachiller en los tiempos del buen vivir: Un dispositivo que perpetúa la desigualdad",
+            "title-short": "El examen ser bachiller en los tiempos del buen vivir",
+            "type": "article-journal",
+            "volume": "53"
+        },
+        {
+            "DOI": "10.29156/INTER.10.1.7",
+            "URL": "https://ojs.intercambios.cse.udelar.edu.uy/index.php/ic/article/view/461/333",
+            "container-title": "Inter-Cambios Dilemas y Transiciones de la Educación Superior",
+            "id": "lacontr2023",
+            "issue": "1",
+            "issued": {
+                "date-parts": [
+                    [
+                        2023,
+                        6,
+                        1
+                    ]
+                ]
+            },
+            "title": "La contradicción entre las estadísticas y las prácticas: Hacia nuevos abordajes de estudio para analizar la desigualdad en la educación superior",
+            "title-short": "La contradicción entre las estadísticas y las prácticas",
+            "type": "article-journal",
+            "volume": "10"
+        },
+        {
+            "DOI": "10.20983/noesis.2023.2.3",
+            "URL": "https://erevistas.uacj.mx/ojs/index.php/noesis/article/view/5761",
+            "author": [
+                {
+                    "family": "De La Luz Tovar",
+                    "given": "Christian"
+                },
+                {
+                    "family": "Pineda Salazar",
+                    "given": "Sibyl Italia"
+                }
+            ],
+            "container-title": "Nóesis. Revista de Ciencias Sociales",
+            "id": "delaluztovar2023",
+            "issue": "64",
+            "issued": {
+                "date-parts": [
+                    [
+                        2023,
+                        7,
+                        1
+                    ]
+                ]
+            },
+            "page": "42-72",
+            "title": "Análisis regional de la discriminación salarial de los trabajadores indígenas en méxico",
+            "type": "article-journal",
+            "volume": "32"
+        },
+        {
+            "DOI": "10.24201/es.2023v41n122.2260",
+            "URL": "https://estudiossociologicos.colmex.mx/index.php/es/article/view/2260",
+            "author": [
+                {
+                    "family": "Iturra",
+                    "given": "Julio"
+                },
+                {
+                    "family": "Castillo",
+                    "given": "Juan Carlos"
+                },
+                {
+                    "family": "Rufs Orellana",
+                    "given": "Catalina"
+                },
+                {
+                    "family": "Maldonado",
+                    "given": "Luis"
+                }
+            ],
+            "container-title": "Estudios Sociológicos de El Colegio de México",
+            "id": "iturra2023",
+            "issue": "122",
+            "issued": {
+                "date-parts": [
+                    [
+                        2023,
+                        2,
+                        9
+                    ]
+                ]
+            },
+            "page": "309-352",
+            "title": "La percepción de desigualdad económica y su influencia sobre la justificación de las diferencias de ingreso legítimas",
+            "type": "article-journal",
+            "volume": "41"
+        }
+    ],
+    "project_biblios": []
+}
